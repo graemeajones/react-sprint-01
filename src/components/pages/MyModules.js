@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import API from '../api/API.js';
-import RenderCount from '../UI/RenderCount.js';
+import ModulePanels from '../entities/modules/ModulePanels.js';
 
 export default function MyModules() {
   // Initialisation ------------------------------
@@ -25,16 +25,13 @@ export default function MyModules() {
   // View ----------------------------------------
   return (
     <section>
-      <RenderCount background="Yellow" fontColor="Black" />
       <h1>My Modules</h1>
       {
         !modules 
           ? <p>{loadingMessage}</p>
           : modules.length === 0
             ? <p>No modules found</p>
-            : modules.map((module) => 
-                <p key={module.ModuleCode}>{module.ModuleCode} {module.ModuleName}</p>
-              )
+            : <ModulePanels modules={modules} />
       }
     </section>
   );
