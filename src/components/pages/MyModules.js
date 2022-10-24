@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import API from '../api/API.js';
 import RenderCount from '../UI/RenderCount.js';
 
 export default function MyModules() {
@@ -13,11 +14,10 @@ export default function MyModules() {
   // Context -------------------------------------
   // Methods -------------------------------------
   const apiCall = async (endpoint) => {
-    const URL = 'http://localhost:5000/api';
-    const endpointAddress = URL + endpoint;
-    const response = await fetch(endpointAddress);
-    const result = await response.json();
-    setModules(result);
+    const response = await API.get(endpoint);
+    response.isSuccess
+      ? setModules(response.result)
+      : setLoadingMessage(response.message)
   };
   
   useEffect(() => { apiCall(endpoint) }, [endpoint]);
