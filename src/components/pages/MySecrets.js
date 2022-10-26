@@ -1,6 +1,6 @@
 import './Pages.scss';
 
-export default function PageNotFound() {
+export default function MySecrets() {
   // Properties ----------------------------------
   // Hooks ---------------------------------------
   // Context -------------------------------------
@@ -8,7 +8,8 @@ export default function PageNotFound() {
   // View ----------------------------------------
   return (
     <section>
-      <h1>404 - Page not found!</h1>
+      <h1>My Secrets</h1>
+      Go away ... please!
     </section>
   )
 }

@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import AuthContext from '../auth/AuthContext.js';
+import { useAuth } from '../auth/useAuth.js';
 import './Navbar.scss';
 
 export default function Navbar() {
   // Initialisation ------------------------------
-  const { loggedinUser, logout } = useContext(AuthContext);
+  const { loggedinUser, logout } = useAuth();
   const navigate = useNavigate();
 
   // State ---------------------------------------
@@ -15,7 +14,7 @@ export default function Navbar() {
   
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate('/login');
   };
 
   // View ----------------------------------------
@@ -28,13 +27,17 @@ export default function Navbar() {
                 <NavLink to='/' className={getLinkStyle}>My Modules</NavLink>
               </div>
               <div className="navItem">
-                <NavLink onClick={handleLogout} className={getLinkStyle}>Logout</NavLink>
+                <NavLink to='/secrets' className={getLinkStyle}>My Secrets</NavLink>
+              </div>
+              <div className="navItem" onClick={handleLogout}>
+                <NavLink to='/' className={getLinkStyle}>Logout</NavLink>
               </div>
             </>
-          : 
-            <div className="navItem">
-              <NavLink to='/login' className={getLinkStyle}>Login</NavLink>
-            </div>
+          : <>
+              <div className="navItem">
+                <NavLink to='/' className={getLinkStyle}>Login</NavLink>
+              </div>
+            </>
       }
     </nav>
   );

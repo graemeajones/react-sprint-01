@@ -1,14 +1,15 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../auth/AuthContext.js';
+import { useAuth } from '../auth/useAuth.js';
 import API from '../api/API.js';
 import './Pages.scss';
+import './FauxLogin.scss';
 
 export default function Login() {
   // Initialisation ------------------------------
   const staffEndpoint = `/users/staff`;
   const studentEndpoint = `/users/student`;
-  const { setLoggedinUser } = useContext(AuthContext);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   // State ---------------------------------------
@@ -30,7 +31,7 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoggedinUser(selectedUser);
+    login(selectedUser);
     handleHome();
   }
 
