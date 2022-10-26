@@ -4,7 +4,7 @@ import Footer from './Footer.js';
 import './Layout.scss';
 
 export default function Layout({ children }) {
-  // Properties ----------------------------------
+  // Initialisation ------------------------------
   // State ---------------------------------------
   // Context -------------------------------------
   // Methods -------------------------------------

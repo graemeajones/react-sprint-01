@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../UI/Icons.js';
+import AuthContext from '../auth/AuthContext.js';
 import './Header.scss';
 
 export default function Header() {
-  // Properties ----------------------------------
-  // Hooks ---------------------------------------
+  // Initialisation ------------------------------
+  const { loggedinUser } = useContext(AuthContext);
+
+  // State ---------------------------------------
   // Context -------------------------------------
   // Methods -------------------------------------
   // View ----------------------------------------
@@ -12,7 +16,10 @@ export default function Header() {
     <header className="Header">
       <Link to='/'><Icon.Group /></Link>
       <Link to={'/'}><h1>joinMe</h1></Link>
-      <div className="welcome"><p>Welcome Graeme!</p></div>
+      {
+        loggedinUser &&
+        <div className="welcome"><p>{`Welcome ${loggedinUser.UserFirstname} (${loggedinUser.UserUsertypeName})`}</p></div>
+      }
     </header>
-  )
+  );
 }
