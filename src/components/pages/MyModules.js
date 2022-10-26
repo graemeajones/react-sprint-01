@@ -1,12 +1,12 @@
-import { useContext,useState, useEffect } from 'react';
-import AuthContext from '../auth/AuthContext.js';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../auth/useAuth.js';
 import API from '../api/API.js';
 import ModulePanels from '../entities/modules/ModulePanels.js';
 import './Pages.scss';
 
 export default function MyModules() {
   // Initialisation ------------------------------
-  const { loggedinUser } = useContext(AuthContext);
+  const { loggedinUser } = useAuth();
   const endpoint = `/modules/users/${loggedinUser.UserID}`;
 
   // State ---------------------------------------
